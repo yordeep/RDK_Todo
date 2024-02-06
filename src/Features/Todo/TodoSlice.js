@@ -3,7 +3,8 @@ import { createSlice,nanoid } from "@reduxjs/toolkit";
 const initialState = {
     todos: [{
         id:1,
-        text:"Hello World"
+        text:"Hello World",
+        editable:false,
     }]
 }
 
@@ -14,16 +15,20 @@ export const TodoSlice = createSlice({
         addTodo:(state,action)=>{
             const todo = {
                 id:nanoid(),
-                text:action.payload
+                text:action.payload,
+                editable:action.payload.isTodoEditable
             }
             state.todos.push(todo)
         },
         removeTodo:(state,action)=>{
             state.todos = state.todos.filter((todo)=>todo.id !== action.payload)
         },
+        editTodo:(state,action)=>{
+            state.todos.map((todo)=>todo.id === action.payload ? todo.editable = !todo.editable : todo)
+        }
     }
 })
 
-export const {addTodo,removeTodo} = TodoSlice.actions
+export const {addTodo,removeTodo,editTodo} = TodoSlice.actions
 
 export const  TodoReducer = TodoSlice.reducer

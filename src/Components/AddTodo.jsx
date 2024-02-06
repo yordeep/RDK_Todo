@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector} from 'react-redux'
 import {addTodo} from '../Features/Todo/TodoSlice'
 
 
@@ -8,6 +8,9 @@ function AddTodo() {
     const [input, setinput] = useState('')
 
     const dispatch = useDispatch()
+
+    const todos = useSelector(state => state.todos)
+    
 
     const addTodoHandler = (e) =>{
         e.preventDefault()
@@ -28,7 +31,7 @@ function AddTodo() {
         type="submit"
         className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
       >
-        Add Todo
+      Add Todo
       </button>
     </form>
   )
