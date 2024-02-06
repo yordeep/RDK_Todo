@@ -20,7 +20,7 @@ function Todos() {
                 <div className='flex gap-5 items-center'>
                 <button
                 onClick={()=>dispatch(editTodo(todo.id))}>
-                  {todo.editable ? "🗂️" : "✒️"}
+                  {"✒️"}
                 </button>
 
 
